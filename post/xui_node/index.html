@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>X-ui面板下自建节点 | 雪兔のカフェ</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://tyukito.zhx.su/favicon.ico?v=1722944687045">
+<link rel="stylesheet" href="https://tyukito.zhx.su/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="记一次自建vpn过程
+
+前言：
+想搭建自己的vpn已经很久了，但是出于时间和精力一直没空，折腾完了才发觉真的不要去做这些事，除非你是真心喜欢，有这方面的兴趣。搭建所需的成本远远不如去租个机场来的实在。本文尽可能的写的清楚每一步过程，方便自己..." />
+    <meta name="keywords" content="野生技术协会" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://tyukito.zhx.su">
+        <img src="https://tyukito.zhx.su/images/avatar.png?v=1722944687045" class="site-logo">
+        <h1 class="site-title">雪兔のカフェ</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      The world has kissed my soul with its pain, 
+asking for its return in songs.
+    </div>
+    <div class="site-footer">
+      Powered by TsukishiroYukito | <a class="rss" href="https://tyukito.zhx.su/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">X-ui面板下自建节点</h2>
+            <div class="post-date">2023-07-28</div>
+            
+              <div class="feature-container" style="background-image: url('https://view.moezx.cc/images/2023/07/28/8013490eda493b3820f457d0b4fa42af.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>记一次自建vpn过程</p>
+<!-- more -->
+<h3 id="前言">前言：</h3>
+<p>想搭建自己的vpn已经很久了，但是出于时间和精力一直没空，折腾完了才发觉真的不要去做这些事，除非你是真心喜欢，有这方面的兴趣。搭建所需的成本远远不如去租个机场来的实在。本文尽可能的写的清楚每一步过程，方便自己查阅和理解。不做过多的解释。具体原理还请自行学习相关知识。</p>
+<!-- more -->
+<blockquote>
+<p>1.购买域名<br>
+2.注册cloudflare<br>
+3购买vps<br>
+4对应域名和vps的公网ip<br>
+5.下载ssh连接工具（FinalShell）<br>
+6.部署X-ui面板<br>
+7.为域名申请SSL证书<br>
+8部署节点</p>
+</blockquote>
+<!-- more -->
+<h3 id="1购买域名">1购买域名</h3>
+<p>（优点：价格低，有whois隐私保护）<a href="https://www.namesilo.com/">Namesilo</a>。<br>
+购买后进入个人中心，管理域名。<br>
+进入DNS设置，删除默认的域名指向</p>
+<!-- more -->
+<h3 id="2注册cloudflare下文代称cf">2.注册<a href="https://dash.cloudflare.com/">cloudflare</a>下文代称CF</h3>
+<p>这是一个*cdn（转发的服务器）*利用他可以对我们的vps进行数据转发，能提高你的节点速度。如果你的vps配置足够好，有关CF的操作可以忽略。<br>
+注册后添加站点，输入刚才注册的域名，选免费的计划。<em>DNS解析加速</em>他会提示你没有dns记录，无法激活你的站点，按提示步骤设置DNS记录<br>
+<img src="https://view.moezx.cc/images/2023/07/28/e4f36717592ef0055a719aa6a73e5b33.png" alt="e4f36717592ef0055a719aa6a73e5b33.png" loading="lazy"><br>
+回到Namesilo个人中心，打开DNS记录。依据CF提示的删除和添加手动进行操作，我们注册的域名网站就可以关闭了。此后所有的操作都在CF中完成，修改后等待5-10min，CF就会邮件你的域名已经归他托管了。</p>
+<!-- more -->
+<h3 id="3购买vps-racknerd-下文代称rn">3购买vps  <a href="https://racknerd.com/">Racknerd</a> 下文代称RN</h3>
+<p>这里提供的vps性价比来说相对高一点，也可以自行横向对比其他家的vps，根据自己的需求买。<br>
+以这家为例，在官网首页顶部消息就能找到促销信息，选择心仪的vps（推荐1g内存1核以上，节点流量和每月带宽有关）操作系统选择Debian10<em>此教程基于这个系统来完成</em></p>
+<p>购买后5-10min  RN就会邮件你vps的基本信息，邮件十分重要，包括了你主机的端口号，root账号密码，随后就可以在个人中心进入vps的管理面板，管理面板的账号密码也都在邮件里。<br>
+购买后可以查看到你vps的公网ip，到这里vps已经购买成功了（购买vps的时候最好不要挂v，否则会购买不成功）</p>
+<!-- more -->
+<h3 id="4对应域名和vps的公网ip">4对应域名和vps的公网ip</h3>
+<p>回到CF，在CF中点击左侧的dns，点击添加记录。</p>
+<blockquote>
+<p>类型：A；<br>
+名称：填写你的二级域名，随便写；<br>
+IPv4地址：就是你vps的公网ip</p>
+</blockquote>
+<p>添加完毕后就可以检测这个域名是否生效（注意，添加的时候有个小云朵的标志，先关掉他，ping通后再开启）<br>
+打开cmd输入<em>ping+空格+名称.购买的域名</em><br>
+（比如：ping test.baidu.com） 提示ping不是内部或外部命令请自行百度。<br>
+没有ping通 ip地址却已经出来了，说明已经解析成功，等待3min就可以了<br>
+如果始终ping不动，并且vps确保开机了，那说明此ip被防火墙拦截了。此时你应该联系客户，或者更换ip<br>
+RN家的vps在购买24h内可以免费更换一次ip，此后就要3刀一次<br>
+上述操作没问题，域名也ping通了 说明准备工作已经全班做完了</p>
+<!-- more -->
+<h3 id="5下载ssh连接工具finalshell">5.下载ssh连接工具<a href="http://www.hostbuf.com/">FinalShell</a></h3>
+<p>下载后点击主页左上角文件夹图标，点击加号，会弹出SSH连接的选项</p>
+<blockquote>
+<p>名称：随便填；<br>
+主机：vps公网ip；<br>
+端口：查看vps配置，默认22<br>
+用户名：root<br>
+密码：查看邮件</p>
+</blockquote>
+<p>随后弹出你刚才添加的vps信息 双击进行连接</p>
+<!-- more -->
+<h3 id="6部署x-ui面板">6.部署X-ui面板</h3>
+<p>连接成功后依次输入以下三行命令安装X-ui面板</p>
+<p><code>apt update -y          # Debian/Ubuntu 命令</code><br>
+<code>apt install -y curl socat    #Debian/Ubuntu 命令</code><br>
+<code>bash &lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh) #X-ui面板安装</code><br>
+有提示信息选择y 用户名和密码自行设置，面板访问端口随便写<em>如12306</em><br>
+部署完毕后就可以使用公网ip+半角冒号就可以登录vps了<br>
+如：公网ip:12306<br>
+而后就进入了面板的登录界面</p>
+<!-- more -->
+<h3 id="7为域名申请ssl证书">7.为域名申请SSL证书</h3>
+<p>在FinalShell中输入x-ui调出管理脚本，输入“一键申请SSL证书”前的数字<br>
+然后调出一些信息提示：</p>
+<blockquote>
+<p>[DEG] <strong><strong>使用说明</strong></strong><br>
+[INF]该脚本将使用Acme脚本申请证书,使用时需保证:<br>
+[INF] 1.知晓CLoudflare注册邮箱<br>
+[INF] 2.知晓Cloudflare Global API Key<br>
+[INF] 3.城名已通过CLoudflare进行解析到当前服务器<br>
+[INF] 4.该脚本申请证书默认安装路径为/root/cert目录<br>
+确认 输入y<br>
+输入购买的域名<br>
+输入API密钥 （在CF中点击概述，右下角获取API令牌）<br>
+输入CF的注册邮箱 会提示你申请成功</p>
+</blockquote>
+<p>在FinalShell中左下方文件夹，找到root，刷新一下，找到cert，点进去后有两个重要文件，都是你注册的域名.cer和.key<br>
+然后你在xui面板管理界面点击面板设置<br>
+公钥文件路径就是.cer密钥文件路径就是.key。<br>
+右键他们复制路径，然后保存设置，刷新页面。</p>
+<!-- more -->
+<h3 id="8部署节点">8部署节点</h3>
+<p>点击入站列表；点击“+”号<br>
+备注随便填写<br>
+协议：vless<br>
+端口：443<br>
+传输协议ws<br>
+路径：字母+数字<br>
+开启tls<br>
+输入https://cf设置的名称.购买域名:   例：https://test.baidu.com<br>
+公钥密钥路径一样的<br>
+点击操作，点击二维码，即可导入到v2rayN部署完毕。</p>
+<!-- more -->
+<h3 id="结尾">结尾：</h3>
+<p>整个过程看似简单（实则也简单）却花费了我一下午时间，一边跟着教程一步一步来一边慢慢摸索其中的知识，学习真的是第一生产力。<br>
+你知道吗？并不是每棵树都长得一样。有的开花，有的结果，有的可以长得很高很高…… 他们都不一样，就好像我们。 “我们也都不一样。” 你也许跑不快，长得不高，也许不聪明……但你是你，你有你独一无二的地方。 你不完美的样子也很好。因为这是你之所以是你的理由😘</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://tyukito.zhx.su/tag/bSX3D8VBT/" class="tag">
+                    野生技术协会
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://tyukito.zhx.su/post/c_teacher/">
+                  <h3 class="post-title">
+                    记一位老师
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f7e9d80d94b367f26d63',
+        clientSecret: '950815b96f841c4ce0fd7ad6aff96f74da986558',
+        repo: 'ryuki',
+        owner: 'TYukito',
+        admin: ['TYukito'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

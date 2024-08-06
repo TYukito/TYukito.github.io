@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Hello Gridea | 雪兔のカフェ</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://tyukito.zhx.su/favicon.ico?v=1722944687045">
+<link rel="stylesheet" href="https://tyukito.zhx.su/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Gridea 是我使用的第一个博客，在了解了如何利用WordPress制作一个属于的个人博客时，我真的很想试一试。出于时间和自己的经济能力（是真的很穷啦是(゜▽゜*)♪），我不得不在入手前先来尝试一下Gridea。希望我能喜欢上它。
+
+它对..." />
+    <meta name="keywords" content="Gridea" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://tyukito.zhx.su">
+        <img src="https://tyukito.zhx.su/images/avatar.png?v=1722944687045" class="site-logo">
+        <h1 class="site-title">雪兔のカフェ</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      The world has kissed my soul with its pain, 
+asking for its return in songs.
+    </div>
+    <div class="site-footer">
+      Powered by TsukishiroYukito | <a class="rss" href="https://tyukito.zhx.su/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Hello Gridea</h2>
+            <div class="post-date">2023-07-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://tyukito.zhx.su/post-images/hello-gridea.png')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>Gridea 是我使用的第一个博客，在了解了如何利用WordPress制作一个属于的个人博客时，我真的很想试一试。出于时间和自己的<s>经济能力</s>（是真的很穷啦是(゜▽゜*)♪），我不得不在入手前先来尝试一下Gridea。希望我能喜欢上它。</p>
+<!-- more -->
+<p>它对于初学者最友好的地方就是部署方便且免费，之前尝试的是用 coding pages部署，奈何不知道为什么，不知道从什么时候开始腾讯关闭了coding的这项功能，我也不知道Gridea提供的其他几个方法还能不能用~~然而百度和bing现在搜索Gridea前几项还是推荐的coding部署</p>
+<!-- more -->
+<h3 id="为什么想制作属于自己的个人博客">为什么想制作属于自己的个人博客？</h3>
+<p>当然是因为这是我所喜爱的事物，它其实对我现在所学的专业和我未来就业没有任何关系，或者说是帮助，但我就是喜欢它，也为此自学了部分前端知识，甚至非计算机专业也考了计算机二级<s>其实计算机二级真的没什么用(。﹏。)的说</s>但也无奈于自己的学业压力和所在学生会的事务繁忙而已经很久没接触了。可人生路还很长啊，接下来的故事要好好续写吖~</p>
+<!-- more -->
+<p>因为世界上只有一种成功，那就是用自己喜欢的方式过一生♪</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://tyukito.zhx.su/tag/7QTK7gPji/" class="tag">
+                    Gridea
+                  </a>
+                
+              </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f7e9d80d94b367f26d63',
+        clientSecret: '950815b96f841c4ce0fd7ad6aff96f74da986558',
+        repo: 'ryuki',
+        owner: 'TYukito',
+        admin: ['TYukito'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
