@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tyukito.github.io</id>
+    <title>雪兔的咖啡馆</title>
+    <updated>2026-02-04T08:38:13.610Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tyukito.github.io"/>
+    <link rel="self" href="https://tyukito.github.io/atom.xml"/>
+    <subtitle>药石无医</subtitle>
+    <logo>https://tyukito.github.io/images/avatar.png</logo>
+    <icon>https://tyukito.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2026, 雪兔的咖啡馆</rights>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://tyukito.github.io/post/hello-gridea/</id>
+        <link href="https://tyukito.github.io/post/hello-gridea/">
+        </link>
+        <updated>2026-02-04T08:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>重新开始 这是第一篇文章</p>
+<p>前些日子因为一些原因 导致我硬盘坏了 这可真是件头疼的事 在比较着急的情况下尝试格式化修复 不仅修复失败 而且数据全无 因此之前写的全部丢失 虽说之前写的羞涩文字也是自己成长的一部分 但我还是决定 索性重新开始 即使我不同步仍能保留那些文章 但.....也确实是告别了过去的自己</p>
+<p>今天是立春 是春天来临的好日子 距离中国年还剩两周左右的时间 两周后很有可能我就去获得全新的生活了 到那时 我再回来详细讲讲近况</p>
+<p>今天也要加油喵( •̀ ω •́ )✧</p>
+]]></content>
+    </entry>
+</feed>
